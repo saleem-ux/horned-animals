@@ -26,16 +26,78 @@
 // export default HornedBeast
 
 
-import React from 'react'
+// import React from 'react'
+// class HornedBeast extends React.Component {
+//     render() {
+//         return (
+//             <div>
+//                 <h2>{this.props.title}</h2>
+//                 <img src={this.props.image_url} alt={this.props.title} />
+//                 <p>{this.props.description}</p>
+//             </div>
+//         )
+//     }
+// }
+// export default HornedBeast
+
+
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
 class HornedBeast extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            NumberOfHeart: 0,
+        }
+
+
+    }
+    IncreaseNumberOfVote = () => {
+        this.setState({
+            NumberOfHeart: this.state.NumberOfHeart+1
+        })
+    }
+
+
     render() {
         return (
             <div>
-                <h2>{this.props.title}</h2>
-                <img src={this.props.image_url} alt={this.props.title} />
-                <p>{this.props.description}</p>
+                {/* <h2>
+                    {this.props.title}
+                </h2>
+                <img onClick={this.increaseHorne} src={this.props.url} alt={this.props.alt} />
+                
+                <p>
+                    {this.props.description}
+                </p>
+                <p>
+                💙 {this.state.numOfHorned}
+                </p> */}
+
+                <Card style={{ width: '18rem' }}>
+
+                    <Card.Body>
+                        <Card.Title>{this.props.title}</Card.Title>
+                        <Card.Img variant="top" src={this.props.url} alt={this.props.title} />
+                        <Card.Text>
+                            {this.props.description}
+                        </Card.Text>
+                        <Card.Text>
+                            Click the heart button if you love it.
+                        </Card.Text>
+                        <Button variant="success" onClick={this.IncreaseNumberOfVote}>💙</Button>{' '}
+                        <Card.Text>
+                            Number Of Heart : {this.state.NumberOfHeart}
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
             </div>
+
         )
     }
 }
-export default HornedBeast
+
+export default HornedBeast;
