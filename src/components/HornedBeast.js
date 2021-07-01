@@ -40,62 +40,115 @@
 // }
 // export default HornedBeast
 
+// ------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------
 
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+
+// import React from 'react';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import Card from 'react-bootstrap/Card'
+// import Button from 'react-bootstrap/Button'
+// import SelectedBeast from './SelectedBeast';
+
+// class HornedBeast extends React.Component {
+
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             NumberOfHeart: 0,
+//         }
+
+
+//     }
+//     IncreaseNumberOfVote = () => {
+//         this.setState({
+//             NumberOfHeart: this.state.NumberOfHeart+1
+//         })
+//     }
+
+
+
+//     render() {
+//         return (
+//             <div>
+//                 {/* <h2>
+//                     {this.props.title}
+//                 </h2>
+//                 <img onClick={this.increaseHorne} src={this.props.url} alt={this.props.alt} />
+
+//                 <p>
+//                     {this.props.description}
+//                 </p>
+//                 <p>
+//                 💙 {this.state.numOfHorned}
+//                 </p> */}
+
+//                 <Card style={{ width: '18rem' }}>
+
+//                     <Card.Body >
+//                         <Card.Title>{this.props.title}</Card.Title>
+//                         <Card.Img onClick={this.props.show} variant="top" src={this.props.url} alt={this.props.title} />
+//                         <Card.Text>
+//                             {this.props.description}
+//                         </Card.Text>
+//                         <Card.Text>
+//                             Click the heart button if you love it.
+//                         </Card.Text>
+//                         <Button variant="success" onClick={this.IncreaseNumberOfVote}>💙</Button>{' '}
+//                         <Card.Text>
+//                             Number Of Heart : {this.state.NumberOfHeart}
+//                         </Card.Text>
+//                     </Card.Body>
+//                 <SelectedBeast/>
+//                 </Card>
+//             </div>
+
+//         )
+//     }
+// }
+
+// export default HornedBeast;
+
+
+import React from 'react'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 class HornedBeast extends React.Component {
 
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
-            NumberOfHeart: 0,
+            numberOfLike: 0
         }
-
-
     }
-    IncreaseNumberOfVote = () => {
+    increaseLike = () => {
         this.setState({
-            NumberOfHeart: this.state.NumberOfHeart+1
+            numberOfLike: this.state.numberOfLike + 1
         })
     }
-
+    handleModal = () => {
+        this.props.showSelectedBeast(this.props.title);
+    }
 
     render() {
         return (
-            <div>
-                {/* <h2>
-                    {this.props.title}
-                </h2>
-                <img onClick={this.increaseHorne} src={this.props.url} alt={this.props.alt} />
-                
-                <p>
-                    {this.props.description}
-                </p>
-                <p>
-                💙 {this.state.numOfHorned}
-                </p> */}
-
-                <Card style={{ width: '18rem' }}>
-
-                    <Card.Body>
-                        <Card.Title>{this.props.title}</Card.Title>
-                        <Card.Img variant="top" src={this.props.url} alt={this.props.title} />
-                        <Card.Text>
-                            {this.props.description}
-                        </Card.Text>
-                        <Card.Text>
-                            Click the heart button if you love it.
-                        </Card.Text>
-                        <Button variant="success" onClick={this.IncreaseNumberOfVote}>💙</Button>{' '}
-                        <Card.Text>
-                            Number Of Heart : {this.state.NumberOfHeart}
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
-            </div>
-
+            <Card style={{ width: '18rem', margin: '20px', textAlign: 'center' }}>
+                <Card.Img variant="top" style={{ height: '18rem' }}
+                    src={this.props.image_url}
+                    alt={this.props.title}
+                    className='img'
+                    onClick={this.handleModal}
+                />
+                <Card.Body style={{ color: 'white', backgroundColor: '#053742' }}>
+                    <Card.Title >{this.props.title}</Card.Title>
+                    <Card.Text >
+                        {this.props.description}
+                    </Card.Text>
+                    <Button variant="success" onClick={this.increaseLike}>💙 {this.state.numberOfLike}</Button>
+                </Card.Body>
+            </Card>
         )
     }
 }
