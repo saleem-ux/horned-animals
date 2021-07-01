@@ -47,29 +47,78 @@
 // }
 // export default Main
 
-import React from 'react';
+
+// --------------------------------------------------------------------------------------------------------
+
+// import React from 'react';
+// import HornedBeast from './HornedBeast';
+// import Horned from './Horned.json';
+// import SelectedBeast from './SelectedBeast';
+
+
+// class Main extends React.Component {
+  
+//     constructor(props) {
+//         super(props)
+//         this.state = {
+//             show: false
+//         }
+//     }
+//     handleClose = () => {
+//         this.setState({
+//             show: !this.state.show
+//         })
+//     }
+
+
+//   render() {
+     
+//       return (
+//           <div>
+//              {Horned.map((item,index)=>{
+//                  return(
+//                  <HornedBeast  title={item.title} description={item.description} url={item.image_url} key={index} />
+//                  )
+//              })}
+//              <SelectedBeast/>
+
+//           </div>
+
+
+//       )
+//   }
+// }
+
+// export default Main;
+
+
+
+
+
+
+import React from 'react'
 import HornedBeast from './HornedBeast';
-import Horned from './Horned.json';
+
 
 class Main extends React.Component {
-  
 
+    render() {
 
-  render() {
-     
-      return (
-          <div>
-             {Horned.map((item,index)=>{
-                 return(
-                 <HornedBeast  title={item.title} description={item.description} url={item.image_url} key={index} />
-                 )
-             })}
+        return (
 
-          </div>
-
-
-      )
-  }
+            <>
+                {this.props.DataJson.map((data, index) => {
+                    return <HornedBeast
+                        image_url={data.image_url}
+                        title={data.title}
+                        description={data.description}
+                        key={index}
+                        showSelectedBeast={this.props.handleModal}
+                    />
+                })}
+            </>
+        )
+    }
 }
 
 export default Main;
