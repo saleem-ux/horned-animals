@@ -11,37 +11,43 @@ import SelectedBeast from './components/SelectedBeast';
 
 
 class App extends React.Component {
-  constructor(props) {
+  constructor(props){
     super(props)
-    this.state = {
+    this.state={
       DataJson: DataJson,
       show: false,
-      ImgOnClicked: {}
+     ImgOnClicked: {}
     }
   }
 
-  handleModal = (title) => {
-    let ImgOnClicked = DataJson.find(data => {
-      if (data.title === title) {
-        return data;
-      }
-    })
-    this.setState({
-      show: true,
-      ImgOnClicked: ImgOnClicked
-    })
-  }
+handleModal =(title)=>{
+  let ImgOnClicked = DataJson.find(data => {
+    if (data.title === title) {
+      return data;
+    }
+  })
+  this.setState({
+    show : true,
+   ImgOnClicked:ImgOnClicked
+  })
+}
 
-  handleClose = () => {
-    this.setState({
-      show: false
-    })
-  }
+handleClose = ()=>{
+  this.setState({
+    show : false
+  })
+}
   render() {
     return (
       <>
-        <Main DataJson={this.state.DataJson} handleModal={this.handleModal} />
-        <SelectedBeast ImgOnClicked={this.state.ImgOnClicked} handleClose={this.handleClose} show={this.state.show} />
+        <Header />
+        <Row md={1} >
+          <Col>
+            <Main DataJson ={this.state.DataJson} handleModal={this.handleModal} />
+            <SelectedBeast ImgOnClicked={this.state.ImgOnClicked} handleClose={this.handleClose} show={this.state.show}/>
+          </Col>
+        </Row>
+        <Footer />
       </>
     )
   }
